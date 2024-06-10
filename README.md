@@ -133,7 +133,8 @@ Limit request size: Prevent large payloads to avoid buffer overflow attacks.
        ...
    }
    ```
-Conclusion
+### Conclusion
+
 Securing your NGINX server is crucial for protecting your web applications and data. By following this guide, you can implement effective security measures, including setting secure headers, enabling basic authentication, using allow/deny directives to control access, and hiding sensitive files and directories.
 
 For more detailed configurations and advanced security options, refer to the NGINX documentation.
