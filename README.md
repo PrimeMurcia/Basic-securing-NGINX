@@ -32,5 +32,5 @@ Setting secure headers can help protect your web server from various attacks, in
    ```
 3. **Save the file and reload NGINX:**
    ```bash
-sudo systemctl reload nginx
+   sudo systemctl reload nginx
    ```
