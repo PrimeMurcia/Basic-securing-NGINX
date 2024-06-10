@@ -68,72 +68,71 @@ Control access to your server or specific resources by using the allow and deny 
 
 Edit your NGINX configuration file:
 
-bash
-Copy code
+   ```bash
 sudo nano /etc/nginx/nginx.conf
+   ```
 Configure allow/deny directives in the desired server or location block:
 
-nginx
-Copy code
-server {
-    ...
-    location /admin {
-        allow 192.168.1.0/24;
-        deny all;
-        ...
+   ```nginx
+   server {
+       ...
+       location /admin {
+           allow 192.168.1.0/24;
+           deny all;
+       ...
     }
     ...
-}
+    }
+   ```
 Save the file and reload NGINX:
+   ```bash
+   sudo systemctl reload nginx
+   ```
+## Hiding Sensitive Files and Directories
 
-bash
-Copy code
-sudo systemctl reload nginx
-Hiding Sensitive Files and Directories
 Hide sensitive files and directories to prevent unauthorized access to critical resources.
 
 Edit your NGINX configuration file:
 
-bash
-Copy code
-sudo nano /etc/nginx/nginx.conf
+   ```bash
+   sudo nano /etc/nginx/nginx.conf
+   ```
 Add location blocks to hide specific files and directories:
 
-nginx
-Copy code
-server {
-    ...
-    location ~ /\.(env|htaccess|git) {
-        deny all;
-        ...
-    }
-    ...
-}
+   ```nginx
+   server {
+       ...
+       location ~ /\.(env|htaccess|git) {
+           deny all;
+           ...
+       }
+       ...
+   }
+   ```
 Save the file and reload NGINX:
-
-bash
-Copy code
-sudo systemctl reload nginx
-Additional Security Measures
+   ```bash
+   sudo systemctl reload nginx
+   ```
+## Additional Security Measures
 Disable unnecessary modules: Ensure only essential modules are enabled.
 Limit request size: Prevent large payloads to avoid buffer overflow attacks.
-nginx
-Copy code
-http {
-    ...
-    client_max_body_size 1M;
-    limit_req_zone $binary_remote_addr zone=mylimit:10m rate=10r/s;
-    ...
-}
+   ```nginx
+   http {
+       ...
+       client_max_body_size 1M;
+       limit_req_zone $binary_remote_addr zone=mylimit:10m rate=10r/s;
+       ...
+   }
 
-server {
-    ...
-    location /login {
-        limit_req zone=mylimit burst=5;
-        ...
-    }
-    ...
-}
+   server {
+       ...
+       location /login {
+           limit_req zone=mylimit burst=5;
+           ...
+       }
+       ...
+   }
+   ```
 Conclusion
 Securing your NGINX server is crucial for protecting your web applications and data. By following this guide, you can implement effective security measures, including setting secure headers, enabling basic authentication, using allow/deny directives to control access, and hiding sensitive files and directories.
 
